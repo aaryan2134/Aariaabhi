@@ -7,7 +7,7 @@
 - Aayush Patel
   
 ## Video Demo
-<iframe width="560" height="315" src="https://www.youtube.com/embed/1QuW1o5fiAE?si=9Z86C6AMayz-GkTi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+[Video Link](https://youtu.be/1QuW1o5fiAE)
 
 ## Presentation
 [Link to PPT](Aariaabhi_HackOn.pdf)
