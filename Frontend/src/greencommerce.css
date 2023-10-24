@@ -1,0 +1,112 @@
+.navbar {
+  width: 100%;
+  background-color: #232f3e;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+.navbar .logo {
+  font-size: 24px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.navbar .user-info {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .user-info .username {
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+.navbar .icons {
+  display: flex;
+  align-items: center;
+}
+
+.navbar .icons img {
+  margin-right: 10px;
+  width: 24px;
+  height: 24px;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile {
+  text-align: center;
+}
+
+.profile h1 {
+  font-size: 24px;
+  margin: 10px 0;
+}
+
+.user-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin: 20px auto;
+  background-color: #ccc;
+}
+
+.green-count {
+  font-size: 20px;
+  margin: 20px 0;
+}
+
+.discount-checkbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.discount-checkbox input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.discount-button {
+  /* display: none; */
+  font-size: 18px;
+  background-color: #f0c14b;
+  color: #111;
+  border: none;
+  border-radius: 3px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.coupon-message {
+  /* display: none; */
+  font-size: 16px;
+  color: #4caf50;
+}
+
+.coupon-code {
+  font-size: 18px;
+  font-weight: bold;
+  color: #4caf50;
+  margin: 10px 0;
+}
+
+.discount-available .discount-button {
+  display: inline-block;
+}
+
+.discount-available .coupon-message {
+  display: block;
+}
