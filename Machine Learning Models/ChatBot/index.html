@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../public/favicon.ico" />
+    <title>Amazon Assistant - Your Personalized Conversational Chat Bot</title>
+    <style>
+      * {
+        border-radius: 5px;
+        background-color: #000000;
+      }
+      body {
+          font-family: Arial, sans-serif;
+          text-align: center;
+          margin: 0;
+          padding: 20px;
+          background-color: #000000;
+          color: #FFFFFF ;
+      }
+      .chat-container {
+          max-width: 600px;
+          margin: 0 auto;
+          padding: 20px;
+          background-color: #f79400;
+          border-radius: 10px;
+          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+      .chat-box {
+          border: 1px solid #ccc;
+          border-radius: 10px;
+          padding: 20px;
+          background-color: #ffffff;
+          height: 300px;
+          overflow-y: scroll;
+          margin-bottom: 20px;
+      }
+      .user-message {
+          text-align: left;
+          margin-bottom: 10px;
+          background-color: rgb(241, 227, 208);
+      }
+      .bot-message {
+          text-align: right;
+          margin-bottom: 10px;
+          background-color: #ffffff;
+      }
+      .message {
+          display: inline-block;
+          padding: 10px;
+          margin: 5px;
+          border-radius: 3px;
+          color: #FFFFFF ;
+          background-color: #f79400;
+          max-width: 70%;
+          word-wrap: break-word;
+      }
+      .message1 {
+          display: inline-block;
+          padding: 10px;
+          border-radius: 10px;
+          color: black ;
+          background-color: rgb(241, 227, 208);
+          max-width: 70%;
+          word-wrap: break-word;
+      }
+      .input-container {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          background-color: #ffffff;
+          padding: 10px;
+          border-radius: 5px;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+      .chat-input {
+          flex-grow: 1;
+          padding: 10px;
+          border: none;
+          border-radius: 5px;
+          background-color: #fff;
+      }
+      .chat-button {
+          background-color: #1F74BA;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          padding: 10px 20px;
+          cursor: pointer;
+          margin-left: 10px;
+      }
+      .customize-size-button {
+          background-color: #e74c3c;
+          color: white;
+          border: none;
+          border-radius: 5px;
+          padding: 10px 20px;
+          cursor: pointer;
+          margin-right: 10px;
+      }
+      .customize-size-link {
+          text-decoration: none;
+          color: #F7E200;
+      }
+      .outfit-image1 {
+          display: none;
+          margin-top: 20px;
+          max-width: 100%;
+      }
+      .outfit-image2 {
+          display: none;
+          margin-top: 20px;
+          max-width: 100%;
+      }
+      .outfit-image3 {
+          display: none;
+          margin-top: 20px;
+          max-width: 100%;
+      }
+      .outfit-image4 {
+          display: none;
+          margin-top: 20px;
+          max-width: 100%;
+      }
+  </style>
+</head>
+<body>
+    <header>
+        <h1>Amazon Assistant</h1>
+        <p>Your Personalized Conversational Chat Bot</p>
+    </header>
+    <main>
+      <div class="chat-container">
+        <div class="chat-box" id="chatBox">
+            <div class="bot-message">
+                <div class="message">Welcome to the Amazon Assistant - Your Personalized Conversational Chat Bot! </div>
+                <div class="message">How can I assist you today?</div>
+            </div>
+        </div>
+        <div class="input-container">
+            <a class="customize-size-button" href="http://localhost:3000/Cart" target="_blank">Add To Cart</a>
+            <input class="chat-input" id="userInput" type="text" placeholder="Chat with you Amazon.in Assistant...">
+            <button class="chat-button" id="submitBtn">Send</button>
+        </div>
+        <a href="http://localhost:3000/products/4"><img class="outfit-image1" id="outfitImage1" src="" alt="Fashion Outfit"></a>
+        <a href="http://localhost:3000/products/3"><img class="outfit-image2" id="outfitImage2" src="" alt="Fashion Outfit"></a>
+        <a href="http://localhost:3000/products/9"><img class="outfit-image3" id="outfitImage3" src="" alt="Fashion Outfit"></a>
+        <a href="http://localhost:3000/products/10"><img class="outfit-image4" id="outfitImage4" src="" alt="Fashion Outfit"></a>
+        <!-- <div class="outfit-container">
+          <img class="outfit-image" id="outfitImage" src="" alt="Fashion Outfit">
+          <a class="product-link-button" id="productLinkButton" href="" target="_blank">Buy Now</a>
+        </div> -->
+      </div>
+    </main>
+
+    <script>
+      const chatBox = document.getElementById("chatBox");
+      const userInput = document.getElementById("userInput");
+      const submitBtn = document.getElementById("submitBtn");
+      const outfitImage1 = document.getElementById("outfitImage1");
+      const outfitImage2 = document.getElementById("outfitImage2");
+      const outfitImage3 = document.getElementById("outfitImage3");
+      const outfitImage4 = document.getElementById("outfitImage4");
+
+      const outfitImages = {
+          casual: "casual_outfit.jpg",
+          formal: "formal_outfit.jpg",
+          party: "party_outfit.jpg",
+          ethnic: "ethnic_outfit.jpg"
+      };
+
+      function addBotMessage(message) {
+          const botMessage = document.createElement("div");
+          botMessage.className = "bot-message";
+          botMessage.innerHTML = `<div class="message">${message}</div>`;
+          chatBox.appendChild(botMessage);
+          chatBox.scrollTop = chatBox.scrollHeight;
+      }
+
+      const delay = ms => new Promise(res => setTimeout(res, ms));
+
+      function wait(ms){
+        var start = new Date().getTime();
+        var end = start;
+        while(end < start + ms) {
+          end = new Date().getTime();
+         }
+      } 
+
+      function addUserMessage(message) {
+          const userMessage = document.createElement("div");
+          userMessage.className = "user-message";
+          userMessage.innerHTML = `<div class="message1">${message}</div>`;
+          chatBox.appendChild(userMessage);
+          chatBox.scrollTop = chatBox.scrollHeight;
+      }
+
+      submitBtn.addEventListener("click", () => {
+          const userMessage = userInput.value.toLowerCase();
+          addUserMessage(userInput.value);
+          console.log(userMessage)
+          
+          const imageFileName = outfitImages[userMessage];
+          if(userMessage === "suggest me some warm clothes"){
+              addBotMessage("Sure, here are some sweaters for you");  
+              outfitImage1.src = "https://fakestoreapi.com/img/71YXzeOuslL._AC_UY879_.jpg";
+              outfitImage1.style.display = "block";
+              console.log("For a male of age 20, height around 5.5 feet living in New Delhi, India, has purchased recently: chocolate box, Bluetooth speaker, a suit, Trending outfits for men on Social Media: warm, soft, fitted, Comfortable wear, preferred style: readymade clothes, easy to handle suggest me some warm clothes Month: October, Weather: cold, winter")
+          }
+
+          else if(userMessage === "i am looking for something more warm"){
+              addBotMessage("Sure!!");  
+              addBotMessage(`Here's a jacket for you:`);
+              outfitImage2.src = "https://fakestoreapi.com/img/71li-ujtlUL._AC_UX679_.jpg";
+              outfitImage2.style.display = "block";
+              // outfitImage1.src = "casual_outfit4.jpg";
+              // outfitImage2.src = "casual_outfit2.jpg";
+              // outfitImage3.src = "casual_outfit3.jpg";
+              // outfitImage1.style.display = "block";
+              // outfitImage2.style.display = "block";
+              // outfitImage3.style.display = "block";
+              
+          }
+          else if(userMessage === "suggest me some storage devices"){
+              addBotMessage("Sure!!");  
+              addBotMessage(`You can checkout this harddisk for a good price:`);
+              addBotMessage(`Also, if you want to be energy efficient and go green try this latest ssd:`);
+              outfitImage3.src = "https://fakestoreapi.com/img/61IBBVJvSDL._AC_SY879_.jpg";
+              outfitImage3.style.display = "block";
+              outfitImage4.src = "https://fakestoreapi.com/img/61U7T1koQqL._AC_SX679_.jpg";
+              outfitImage4.style.display = "block";
+              // outfitImage1.src = "casual_outfit4.jpg";
+              // outfitImage2.src = "casual_outfit2.jpg";
+              // outfitImage3.src = "casual_outfit3.jpg";
+              // outfitImage1.style.display = "block";
+              // outfitImage2.style.display = "block";
+              // outfitImage3.style.display = "block";
+              
+          }
+          else if (imageFileName) {
+              
+          } else {
+              addBotMessage("That sounds great..!! Let me generate an outfit for you");
+              addBotMessage("Here's an outfit for you:");
+          }
+
+          userInput.value = "";
+      });
+  </script>
+</body>
+</html>
