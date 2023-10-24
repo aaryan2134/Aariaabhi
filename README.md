@@ -1,5 +1,8 @@
 # Hackon Green Commerce Demo - Team Aariaabhi
 
+## Theme
+Green Commerce
+
 ## Team Members
 - Rishit Toteja
 - Abhijeet Thakur
