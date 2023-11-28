@@ -1,4 +1,4 @@
-# Hackon Green Commerce Demo - Team Aariaabhi
+# Amazon HackOn Season 3.0 Team Aariaabhi
 
 ## Theme
 Green Commerce
